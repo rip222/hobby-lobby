@@ -1,0 +1,73 @@
+
+
+<ng-container *ngIf="profile$ | async as profile">
+  <div class="profile-page flex flex-center">
+    <!-- First Block -->
+      <div class="profile-block">
+        <!-- Profile Photo Card -->
+          <div class="board">
+            <div class="profile__photo">
+              <img src="https://picsum.photos/id/741/222/222" alt="">
+            </div>
+          </div>
+        </div>
+      <!-- Second Block -->
+        <div class="profile-block">
+          <!-- General Info board -->
+          <div class="board">
+            <h3 class="profile__name">{{profile.name || profile.email}}</h3>
+            <hr class="divider">
+            <div class="profile__personal-info">
+              <div class="profile__personal-info__row">
+                <div class="label">Birthday</div>
+                <div class="labeled">Oct 6 1993</div>
+              </div>
+              <div class="profile__personal-info__row">
+                <div class="label">Country</div>
+                <div class="labeled">Nikaragua</div>
+              </div>
+              <div class="profile__personal-info__row">
+                <div class="label">Joined</div>
+                <div class="labeled">{{profile.registered | date}}</div>
+              </div>
+            </div>
+            <hr class="divider">
+            <div class="profile__meta flex flex-sb">
+              <div class="profile__meta__item flex flex-col flex-middle" (click)="tempAlert()">
+                <span class="profile__meta__item__digit">45</span>
+                <span class="profile__meta__item__text">friends</span>
+              </div>
+              <div class="profile__meta__item flex flex-col flex-middle" (click)="selectDisplayBlock('collections'); toggleCollections = !toggleCollections">
+                  <span class="profile__meta__item__digit">{{profile.collections}}</span>
+                <span class="profile__meta__item__text">collections</span>
+              </div>
+              <div class="profile__meta__item flex flex-col flex-middle" (click)="tempAlert()">
+                  <span class="profile__meta__item__digit">76</span>
+                <span class="profile__meta__item__text">posts</span>
+              </div>
+              <div class="profile__meta__item flex flex-col flex-middle" (click)="tempAlert()"
+                (click)="selectDisplayBlock('achievements'); toggleCollections = !toggleCollections">
+                  <span class="profile__meta__item__digit">{{profile.achievements}}</span>
+                <span class="profile__meta__item__text">achievements</span>
+              </div>
+              <div class="profile__meta__item flex flex-col flex-middle">
+                  <span class="profile__meta__item__digit">{{profile.experience}}</span>
+                <span class="profile__meta__item__text">experience</span>
+              </div>
+            </div>
+          </div>
+          <!-- General Info Card End -->
+
+          <!--  -->
+        </div>
+        <!-- Second Block End -->
+  </div>
+  <div *ngIf="detail$ | async as detail">
+    <collections-block
+      *ngIf="toggleCollections"
+      [detail]="detail"
+      [uid]="profile.id">
+    </collections-block>
+  </div>
+
+</ng-container>

@@ -1,0 +1,17 @@
+<!-- <p>collections-block works</p> -->
+
+<!-- <div class="flex">
+  <pre *ngFor="let col of collections$ | async as collections">
+    {{col | json}}
+  </pre>
+</div> -->
+
+<div class="flex" *ngIf="collections$ | async as collections">
+  <div *ngFor="let collection of collections">
+    <div
+      *ngIf="collection"
+      [routerLink]="['c/', collection.id]">
+      <collection [collection]="collection"></collection>
+    </div>
+  </div>
+</div>

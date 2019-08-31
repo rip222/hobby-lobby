@@ -1,0 +1,9 @@
+<form 
+  [formGroup]="form" 
+  (ngSubmit)="onSubmit()"
+  style="padding: 0">
+  <mat-form-field appearance="fill" class="search-field">
+    <input matInput type="text" formControlName="search" id="search" placeholder="Search">
+    <!-- <mat-icon matSuffix>search</mat-icon> -->
+  </mat-form-field>
+</form>

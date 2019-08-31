@@ -1,0 +1,23 @@
+<ul class="card" *ngIf="collections">
+  <li
+    *ngFor="let col of collections"
+    (click)="onClick(col.id)">
+    <a [routerLink]="[ 'c', col.id ]">{{col.title}}</a>
+    <hr class="divider">
+  </li>
+</ul>
+
+<!-- <ul class="card">
+  <li>
+    <span>Some title</span>
+    <hr class="divider">
+  </li>
+  <li>
+    <span>Some title</span>
+    <hr class="divider">
+  </li>
+  <li>
+    <span>Some title</span>
+    <hr class="divider">
+  </li>
+</ul> -->

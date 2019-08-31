@@ -1,0 +1,10 @@
+export const isNumber = value => typeof value === 'number' && isFinite(value);
+export const isString = value => typeof value === 'string' || value instanceof String;
+export const isArray = value => typeof value === 'object' && value.constructor === Array;
+export const isObject = value => typeof value === 'object' && value.constructor === Object;
+// export const isFile = value => value.constructor === Blob || value.constructor === File;
+export const isRegExp = value => typeof value === 'object' && value.contructor === RegExp;
+export const isBoolean = value => typeof value === 'boolean';
+export const isDate = value => value instanceof Date && Object.prototype.toString.call(value) === '[object Date]';
+export const isNull = value => value === null;
+export const isUndefined = value => value === undefined;

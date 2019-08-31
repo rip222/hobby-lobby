@@ -1,0 +1,6 @@
+<auth-form (formSubmitted)="login($event)">
+    <h1>Login</h1>
+    <!-- <input type="text" style="display: none"> -->
+    <span>Login</span>
+  </auth-form>
+  <a [routerLink]="['/auth', 'register']" class="link flex flex-center">Create account</a>

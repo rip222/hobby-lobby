@@ -1,0 +1,50 @@
+.card
+  width: var(--card-width)
+  height: var(--card-height)
+  margin: var(--spacer)
+  margin-left: 0
+  overflow: hidden
+  position: relative
+  background: var(--white-color)
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2)
+  transition: all 0.25s ease-in-out
+  &:hover
+    perspective: bottom
+    transform: translateY(-10px)
+    box-shadow: 1px 30px 20px -5px rgba(0,0,0,0.4)
+
+.card-img
+  overflow: hidden
+  height: 150px
+  img
+    // width: 100%
+    object-fit: cover
+
+.card-info
+  padding: var(--spacer)
+
+.card-title
+  font-size: 1em
+  margin-bottom: calc(var(--spacer) / 4)
+
+.card-description
+  font-size: var(--fz-desc)
+  margin-bottom: var(--spacer)
+  line-height: var(--lh-desc)
+  height: calc(var(--lh-desc) * var(--fz-desc) * 3)
+  // all these values to line-clamp the description
+  display: -webkit-box
+  -webkit-line-clamp: 3
+  -webkit-box-orient: vertical
+  text-overflow: ellipsis
+  overflow: hidden
+
+.card-category
+  display: inline-block
+  font-size: 0.8em
+  padding: calc(var(--spacer) / 6 )
+  padding-left: var(--spacer)
+  color: var(--white-color)
+  background: var(--accent-color)
+  position: absolute
+  left: 0

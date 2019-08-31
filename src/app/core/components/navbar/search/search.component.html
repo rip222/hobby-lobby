@@ -1,0 +1,17 @@
+<div class="flex flex-col">
+  <search-field
+    (keywordSubmitted)="search($event)"
+    (focusout)="listHidden = true"
+    (focus)="listHidden = false"
+    tabindex="-1"
+  >
+  </search-field>
+  <search-results 
+    class="search-results"
+    *ngIf="collections$ | async as collections"
+    [collections]="collections"
+    (itemClicked)="hideList()"
+    [ngStyle]="{'visibility': listHidden ? 'hidden' : 'visible'}"
+  >
+  </search-results>
+</div>

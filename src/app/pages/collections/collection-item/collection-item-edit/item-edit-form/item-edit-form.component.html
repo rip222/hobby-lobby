@@ -1,0 +1,106 @@
+<h1 class="form__title">
+  <span *ngIf="item.id">Update {{item.title}}</span>
+  <span *ngIf="!item.id">Create new item</span>
+</h1>
+<hr class="divider">
+<div class="flex flex-sb ">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col">
+    <!-- Main form fields -->
+    <mat-form-field>
+      <input matInput type="text" formControlName="title" placeholder="Title" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput formControlName="description" placeholder="Description" required rows="5"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="shape" required>
+        <mat-option [value]="shape" *ngFor="let shape of itemShapes">{{shape | splitCamelCase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="size" placeholder="Size (dimensions)" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-chip-list #chipList aria-label="Theme selection">
+        <mat-chip *ngFor="let theme of themes" [selectable]="true" (removed)="removeTheme(theme)">
+          {{theme}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Themes..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTheme($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <!-- Optional dynamically generated form fields -->
+    <ng-container *ngFor="let input of inputs">
+
+      <ng-container [ngSwitch]="input.type">
+
+        <mat-form-field *ngSwitchCase="'text'">
+          <input type="text" matInput [placeholder]="input.key | splitCamelCase" [formControlName]="input.key">
+        </mat-form-field>
+
+        <div *ngSwitchCase="'checkbox'" class="form-control">
+          <mat-checkbox [formControlName]="input.key" *ngIf="input.key !== 'stillIssued'">{{input.key | splitCamelCase}}
+          </mat-checkbox>
+          <mat-checkbox [formControlName]="input.key" *ngIf="input.key === 'stillIssued'" (click)="isStillIssued()">
+            {{input.key | splitCamelCase}}</mat-checkbox>
+        </div>
+
+
+        <mat-form-field *ngSwitchCase="'date'">
+          <input matInput type="text" [matDatepicker]="picker" [placeholder]="input.key | splitCamelCase"
+            [formControlName]="input.key">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'number'">
+          <input matInput type="number" [placeholder]="input.key | splitCamelCase" [formControlName]="input.key">
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'textarea'">
+          <textarea matInput [placeholder]="input.key | splitCamelCase" [formControlName]="input.key"
+            rows="5"></textarea>
+        </mat-form-field>
+
+      </ng-container>
+
+    </ng-container>
+    <!-- Hidden input for file input -->
+    <input 
+      type="file" 
+      accept="image/png,image/jpeg,image/jpg" 
+      formControlName="photoFile" 
+      id="photoFile" 
+      (change)="getFile($event)" 
+      #fileInput 
+      hidden>
+
+    <hr class="divider">
+    <br>
+
+    <div class="flex flex-wrap">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        <span *ngIf="item?.title">Update item</span>
+        <span *ngIf="!item?.title">Create item</span>
+      </button>
+      <a mat-button [routerLink]="['../']" color="accent">
+        <span *ngIf="item?.title">Cancel</span>
+        <span *ngIf="!item?.title">Go Back</span>
+      </a>
+    </div>
+  </form>
+  <div class="form-img">
+    <mat-card>
+      <img [src]="form.value.photoPreview" mat-card-image>
+    </mat-card>
+    <photo-upload *ngIf="file" [file]="file" (urlsEmitted)="insertPhotoUrls($event)"></photo-upload>
+    <a mat-button (click)="fileInput.click($event)">Choose image</a>
+  </div>
+
+</div>

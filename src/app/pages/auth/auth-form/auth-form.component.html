@@ -1,0 +1,35 @@
+<div>
+  <form 
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col flex-middle"
+  >
+  <div class="form__title">
+    <ng-content select="h1"></ng-content>
+  </div>
+
+  <mat-form-field *ngIf="url === 'register'">
+    <input matInput type="text" formControlName="name" placeholder="Member Login" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="email" formControlName="email" placeholder="Email" required>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="url === 'register'">
+    <input matInput type="email" formControlName="emailConfirm" placeholder="Confirm Email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" formControlName="password" placeholder="Password" required>
+  </mat-form-field>
+
+  <button 
+    [disabled]="form.invalid"
+    mat-raised-button 
+    color="primary" 
+    type="submit">
+      <ng-content select="span"></ng-content>
+  </button>
+  </form>
+</div>

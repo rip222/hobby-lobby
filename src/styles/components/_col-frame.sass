@@ -1,0 +1,55 @@
+.col-frame
+  padding: var(--spacer) 0
+  
+.header
+
+.title
+  font-size: var(--fz-title)
+  text-transform: uppercase
+  margin-bottom: calc(var(--spacer) / 2)
+
+.category
+  background: var(--accent-color)
+  color: #fff
+  padding: calc(var(--spacer) / 6)
+
+.col-meta
+  flex: 1
+  margin-bottom: var(--spacer)
+
+.col-meta-item
+  margin-right: var(--spacer)
+  margin-bottom: var(--spacer)
+  flex-basis: 50%
+
+.meta-item-type
+  color: var(--faded-color)
+  font-size: var(--fz-meta-type)
+
+.meta-item-value
+  font-size: var(--fz-meta-value)
+
+.col-description
+  margin-bottom: var(--spacer)
+  font-weight: var(--fw-desc)
+  font-size: var(--fz-desc)
+
+.col-themes
+  padding: var(--spacer) 0
+
+.col-contributors
+  padding: var(--spacer) 0
+
+.col-contributors-list
+  .link
+    &::after
+      content: ' '
+
+.col-photo
+  overflow: hidden
+  max-width: 500px
+  max-height: 480px
+  // width: 100%
+  img
+    width: 100%
+    object-fit: contain

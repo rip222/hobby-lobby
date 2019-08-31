@@ -1,0 +1,89 @@
+<ng-container *ngIf="col">
+  <div class="col-frame flex flex-sb flex-wrap">
+
+    <!-- Collection Info -->
+    <article class="general flex-paired">
+
+      <!-- Header -->
+      <div class="header">
+        <h4 class="title">{{col.title}}</h4>
+        <span class="category">{{col.category | splitCamelCase}}</span>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Meta info -->
+      <div class="col-meta flex flex-sb">
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Country</span>
+          <span class="meta-item-value">{{col.country}}</span>
+        </div>
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Producer</span>
+          <span class="meta-item-value">{{col.producedBy}}</span>
+        </div>
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Years</span>
+          <span class="meta-item-value">
+            {{col.producedFrom | date}} - {{col.stillProduced ? 'present' : col.producedTo | date}}
+          </span>
+        </div>
+      </div>
+
+      <!-- Meta info 2 -->
+      <div class="col-meta flex flex-sb">
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Created</span>
+          <span class="meta-item-value">{{col.created | date}}</span>
+        </div>
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Items count</span>
+          <span class="meta-item-value">{{col.itemsIds.length}}</span>
+        </div>
+        <div class="col-meta-item flex flex-col">
+          <span class="meta-item-type">Created by</span>
+          <span class="meta-item-value">
+            <a class="link" [routerLink]="[ '/p', col.createdBy.id ]">
+              {{col.createdBy.name}}
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Description -->
+      <div class="col-description">
+        <p>{{col.description}}</p>
+      </div>
+
+      <!-- Themes -->
+      <div class="col-themes">
+        <mat-chip-list>
+          <mat-chip *ngFor="let theme of col.themes">{{theme}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      
+      <!-- Contributors -->
+      <div class="col-contributors">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Contributors</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="col-contributors-list flex">
+            <a class="link" *ngFor="let user of col.contributors" [routerLink]="[ '/p', user.id ]">
+              {{user.name}}
+            </a>
+          </div>
+        </mat-expansion-panel>
+      </div>
+      
+    </article>
+
+    <!-- Collection Image -->
+    <div class="col-photo flex-paired">
+      <img [src]="col.photoPreview || '../../../../assets/main/col-placeholder.png'">
+    </div>
+  </div>
+
+</ng-container>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="snapshot | async as snap">
+  <ng-container *ngIf="percentage | async as pct">
+    <mat-progress-bar mode="determinate" [value]="pct"></mat-progress-bar>
+  </ng-container>
+</ng-container>
+
+

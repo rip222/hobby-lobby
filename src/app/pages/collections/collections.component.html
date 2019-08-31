@@ -1,0 +1,23 @@
+
+<!-- New collection button -->
+<div class="col-new" *ngIf="auth$ | async">
+  <button mat-raised-button (click)="addCollection()">
+    <mat-icon>add</mat-icon>
+    New collection</button>
+</div>
+
+<!-- Collections -->
+<section 
+  class="collections" style="margin: var(--spacer) 0"
+  *ngIf="collections$ | async as collections"
+>
+  <collection
+    *ngFor="let collection of collections"
+    [collection]="collection"
+    [routerLink]="[collection.id]"
+    style="cursor: pointer"
+  >
+  </collection>
+</section>
+<router-outlet></router-outlet>
+

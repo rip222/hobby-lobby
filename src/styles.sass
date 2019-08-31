@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+
+\:root
+  --spacer: 1rem
+  --spacer-negative: -1rem
+
+  // colors
+  --accent-color: #D8247C
+  --main-bg-color: #efefef
+  --bg-color: #34495e
+  --secondary-color: #25A9F0
+  --faded-color: #a0a0a0
+  --white-color: #fff
+
+  // font weight
+    --fw-desc: 300
+
+  // font sizes
+  --fz-title: 1.5em
+  --fz-desc: 0.9em
+  --fz-meta-type: calc(1em - 15%)
+  --fz-meta-value: 1em
+
+  --lh-desc: 1.5
+
+  // card
+  --card-width: 250px
+  --card-height: 300px
+
+
+
+
+*, *::before, *::after
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+html
+  background: var(--main-bg-color)  
+
+body, form, input
+  font-size: 1em
+  font-family: Roboto, sans-serif
+  color: var(--text-color)
+
+form
+  padding-bottom: var(--spacer)
+
+ul
+  list-style: none
+
+a
+  display: inline-block
+
+
+.flex
+  display: flex
+  &-col
+    flex-direction: column
+  &-wrap
+    flex-wrap: wrap
+  &-right
+    justify-content: flex-end
+  &-left
+    justify-content: flex-start
+  &-bottom
+    align-items: flex-end
+  &-top
+    align-items: flex-start
+  &-center
+    justify-content: center
+  &-middle
+    align-items: center
+  &-sa
+    justify-content: space-around
+  &-sb
+    justify-content: space-between
+  &-evenly
+    justify-content: space-evenly
+
+.flex-paired
+  width: 48%
+.flex-tripled
+  width: 30%
+
+.container
+  max-width: 1111px
+  width: 80%
+  margin: 0 auto
+
+.link
+  // display: inline-block
+  font-size: 1em
+  cursor: pointer
+  text-decoration: none
+  &:visited
+    color: var(--secondary-color)
+  &:hover
+    color: var(--accent-color)
+
+.divider
+  height: 1px
+  border: none
+  background: lighten(black, 90%)
+  margin: var(--spacer) 0
+
+
+@import './styles/components/all'
+@import './styles/modules/all'

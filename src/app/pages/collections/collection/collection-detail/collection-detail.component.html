@@ -1,0 +1,62 @@
+<ng-container *ngIf="collection$ | async as col">
+  <collection-frame [col]="col"></collection-frame>
+
+  <div class="actions flex" *ngIf="auth$ | async">
+    <a mat-raised-button [routerLink]="[ '/c', id, 'edit']">
+      <mat-icon>edit</mat-icon>
+      Update collection
+    </a>
+    <a mat-raised-button [routerLink]="[ './new' ]">
+      <mat-icon>add</mat-icon>
+      Add collection item
+    </a>
+  </div>
+
+</ng-container>
+
+<br>
+<hr class="divider">
+
+<ng-container *ngIf="items$ | async as items">
+  <button mat-button (click)="onSelectMode()" [color]="isSelectMode ? 'warn' : 'primary'"
+    *ngIf="(auth$ | async) && items.length > 0">
+    <span *ngIf="isSelectMode">Exit select mode</span>
+    <span *ngIf="!isSelectMode" (click)="notify()">
+      Enter select mode
+    </span>
+  </button>
+
+  <ng-container *ngIf="isSelectMode">
+    <div class="flex flex-wrap flex-sb">
+      <div *ngFor="let it of items">
+        <collection-item [item]="it" [highlighted]="isSelected(it)" (click)="addItemsToList(it)" style="cursor: pointer">
+        </collection-item>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="!isSelectMode">
+    <div class="flex flex-wrap flex-sb">
+      <collection-item *ngFor="let item of items" [item]="item" [routerLink]="[item.id]">
+      </collection-item>
+    </div>
+  </ng-container>
+
+</ng-container>
+
+<br>
+
+<div class="actions flex">
+  <button class="button-action" mat-raised-button color="primary" (click)="updateCollection()" *ngIf="isSelectMode">
+    Update My Collection
+  </button>
+</div>
+
+<br>
+<hr class="divider">
+<br>
+
+<div class="comments-section">
+  <disqus [identifier]="id"></disqus>
+</div>

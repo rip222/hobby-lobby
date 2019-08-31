@@ -1,0 +1,13 @@
+<ng-container *ngIf="data$ | async as data">
+  
+  <item-edit-form
+    [profile]="data[0]"
+    [collection]="data[1]"
+    [item]="data[2]"
+    (itemUpdated)="updateItem($event)"
+    (itemCreated)="createItem($event)"
+  >
+  </item-edit-form>
+
+</ng-container>
+  

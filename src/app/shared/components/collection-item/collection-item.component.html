@@ -1,0 +1,13 @@
+<ng-container *ngIf="item">
+  <a class="card" [class.highlighted]="highlighted">
+    <div class="card-img">
+      <img [src]="item.photoPreview" [alt]="item.title">
+    </div>
+    <div class="card-info">
+        <h4 class="card-title">{{item.title}}</h4>
+        <div class="card-description">
+            <p>{{item.description}}</p>
+        </div>
+    </div>
+  </a>
+</ng-container>

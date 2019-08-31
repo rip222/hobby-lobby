@@ -1,0 +1,51 @@
+<nav color="primary" class="navbar flex flex-sb flex-middle">
+ <div class="container flex flex-sb flex-middle">
+    <ul class="navbar__menu flex flex-middle">
+        <li class="navbar__menu__item">
+          <a class="logo" routerLink="">Hobby Lobby</a>
+        </li>
+        <li class="navbar__menu__item">
+          <a class="link" routerLink="">Home</a>
+        </li>
+        <li class="navbar__menu__item">
+          <a class="link" routerLink="">Feed</a>
+        </li>
+        <li class="navbar__menu__item">
+          <a class="link" [routerLink]="['/c']">Collections</a>
+        </li>
+      </ul>
+    
+      <search class="navbar__search"></search>
+    
+    
+      <div class="navbar__menu__item">
+        <button mat-button color="accent" *ngIf="isAuth | async" [matMenuTriggerFor]="profileMenu">Profile</button>
+        <mat-menu #profileMenu="matMenu">
+          <a 
+            mat-menu-item 
+            [routerLink]="['/p', profile.id]" 
+            *ngIf="profile$ | async as profile"
+            >
+            <mat-icon>person</mat-icon>
+            {{profile.name || profile.email}}
+          </a>
+          <a 
+            mat-menu-item 
+            [routerLink]="['/settings']" 
+            >
+            <mat-icon>settings_applications</mat-icon>
+            Settings
+          </a>
+          <a 
+            mat-menu-item
+            (click)="logout()"
+            >
+            <mat-icon>chevron_left</mat-icon>
+            Logout
+          </a>
+        </mat-menu>
+        <a mat-button [routerLink]="[ '/auth', 'login']" *ngIf="!(isAuth | async)">Login</a>
+      </div>
+ </div>
+
+</nav>

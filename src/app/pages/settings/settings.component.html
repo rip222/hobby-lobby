@@ -1,0 +1,48 @@
+<div class="container" *ngIf="profile$ | async as profile">
+  <hr class="divider">
+  <div class="setting flex flex-sb flex-middle">
+    <div class="setting-description">
+      <span>Change Member Login</span>
+    </div>
+    <div class="setting-control">
+      <mat-form-field>
+        <input matInput type="email" placeholder="New Login" [(ngModel)]="newLogin" required minlength="3">
+      </mat-form-field>
+    </div>
+    <div class="setting-action">
+      <button mat-raised-button color="primary" (click)="updateLogin(profile)">Update Login</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="setting flex flex-sb flex-middle">
+    <div class="setting-description">
+      <span>Change Email</span>
+    </div>
+    <div class="setting-control">
+      <mat-form-field>
+        <input matInput type="email" placeholder="New Email" [(ngModel)]="newEmail" required email>
+      </mat-form-field>
+    </div>
+    <div class="setting-action">
+      <button mat-raised-button color="primary" (click)="updateEmail(profile)">Update Email</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="setting flex flex-sb flex-middle">
+    <div class="setting-description">
+      <span>Change Password</span>
+    </div>
+    <div class="setting-control">
+      <mat-form-field>
+        <input matInput type="password" placeholder="New Password" [(ngModel)]="newPassword" required minlength="6">
+      </mat-form-field>
+    </div>
+    <div class="setting-action">
+      <button mat-raised-button color="primary" (click)="updatePassword()">Update Password</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+\:host
+
+.navbar
+  background: var(--bg-color)
+  position: fixed
+  width: 100%
+  z-index: 999
+  top: 0
+  left: 0
+  height: 60px
+  &__search
+    // width: 500px
+    min-width: 200px
+  
+  &__menu
+    &__item
+      &:first-of-type
+        padding-left: 0
+      &:last-of-type
+        padding-right: 0
+      position: relative
+      padding: 0 var(--spacer)
+      cursor: pointer
+      &:hover
+        color: var(--accent-color)
+
+.profile
+  cursor: pointer
+
+.logo
+  text-decoration: none
+  color: var(--white-color)
+  font-size: 1.2em
+  font-weight: 600
+
+.link
+  color: var(--main-bg-color)
+  &:hover
+    color: var(--secondary-color)

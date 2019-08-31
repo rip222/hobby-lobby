@@ -1,0 +1,16 @@
+TODO
+  add styles
+  add angular universal
+
+BUGS
+  SearchComponent: results don't appear on the second search
+  CollectionDetailComponent: url changes, but content not received and rendered 
+  CollectionItemEditComponent: stillIssued behavior is not 100% correct
+  CollectionItemEditComponent: themes behavior is not 100% correct
+  RegisterComponent: no error on email !== emailConfirm
+
+FUTURE TODO
+  check if login is in database on register. login must be unique (or change it to Full name)
+  implements comments section
+  upload multiple files and present them nicely
+  

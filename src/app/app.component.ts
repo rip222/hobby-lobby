@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './store';
+import { requestProfile } from './store/auth-store/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
-  title = 'hobby-lobby';
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(requestProfile());
+  }
 }

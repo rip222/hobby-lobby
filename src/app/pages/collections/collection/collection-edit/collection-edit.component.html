@@ -1,0 +1,88 @@
+<h1 class="form__title">
+  <span *ngIf="!collection.id">New collection</span>
+  <span *ngIf="collection.id">Update {{collection.title}}</span>
+</h1>
+
+<hr class="divider">
+
+<form class="flex flex-col" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field *ngIf="!id">
+    <mat-select placeholder="Select a category" formControlName="category">
+      <mat-option [value]="cat.key" *ngFor="let cat of categories">{{cat.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description" formControlName="description" rows="5"></textarea>
+  </mat-form-field>
+
+  <hr class="divider">
+
+  <div class="flex flex-sb">
+    <mat-form-field class="flex-paired">
+      <input matInput placeholder="Produced by" formControlName="producedBy">
+    </mat-form-field>
+
+    <mat-form-field class="flex-paired">
+      <input matInput placeholder="Country" formControlName="country">
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-sb flex-middle">
+    <mat-form-field class="flex-tripled">
+      <input matInput [matDatepicker]="producedFrom" placeholder="Produced from" formControlName="producedFrom">
+      <mat-datepicker-toggle matSuffix [for]="producedFrom"></mat-datepicker-toggle>
+      <mat-datepicker #producedFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="flex-tripled">
+      <input matInput [matDatepicker]="producedTo" placeholder="Produced to" formControlName="producedTo">
+      <mat-datepicker-toggle matSuffix [for]="producedTo"></mat-datepicker-toggle>
+      <mat-datepicker #producedTo></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox class="flex-tripled" formControlName="stillProduced" (click)="isStillProduced()">Still Produced
+    </mat-checkbox>
+  </div>
+
+  <hr class="divider">
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Total Items Count" formControlName="totalItems">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-chip-list #chipList aria-label="Theme selection">
+      <mat-chip *ngFor="let theme of themes" [selectable]="true" (removed)="remove(theme)">
+        {{theme}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Themes..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div class="form-control" hidden>
+    <label for="themes"></label>
+    <input hidden type="text" formControlName="themes" id="themes" placeholder="Cars, Vehicles, Planes">
+  </div>
+
+  <hr class="divider">
+
+  <div class="flex flex-wrap">
+    <button mat-raised-button color="primary" type="submit">
+      <span *ngIf="!collection.id">Create collection</span>
+      <span *ngIf="collection.id">Update collection</span>
+    </button>
+    <a mat-button color="accent" [routerLink]="['../']">
+      <span *ngIf="!collection.id">Go Back</span>
+      <span *ngIf="collection.id">Cancel</span>
+    </a>
+  </div>
+
+</form>

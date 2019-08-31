@@ -1,0 +1,36 @@
+<ng-container *ngIf="collection$ | async as col">
+  <collection-frame [col]="col"></collection-frame>
+  <hr class="divider">
+  <div class="actions flex flex-sb">
+    <div class="flex flex-middle">
+      <button
+        mat-raised-button
+        (click)="onLike()"
+        >
+        <mat-icon *ngIf="!liked">favorite_border</mat-icon>
+        <mat-icon *ngIf="liked" color="warn">favorite</mat-icon>
+        <span  *ngIf="user.colLikes[col.id] && user.colLikes[col.id].length > 0">
+          {{user.colLikes[col.id].length}}
+        </span>
+      </button>
+    </div>
+    <a mat-button [routerLink]="[ '/c', col.id]">
+      Go to the {{col.title}} page
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </div>
+  <hr class="divider">
+  <div class="card-description">
+    <p>You own {{user.collections[col.id].length}} items
+      {{col.totalItems ? 'out of ' + col.totalItems : 'from this collection'}}
+    </p>
+  </div>
+  <div *ngIf="items$ | async as items" class="flex flex-wrap">
+    <collection-item
+    *ngFor="let item of items"
+    [item]="item"
+    [routerLink]="['/c', col.id, item.id]"
+    >
+    </collection-item>
+  </div>
+</ng-container>

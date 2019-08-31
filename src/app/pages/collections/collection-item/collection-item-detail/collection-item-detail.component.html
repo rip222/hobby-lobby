@@ -1,0 +1,19 @@
+<ng-container *ngIf="item$ | async as item">
+
+  <item-frame [item]="item"></item-frame>
+
+  <a mat-button [routerLink]="['../']">
+      <mat-icon>chevron_left</mat-icon>
+      Collection page
+    </a>
+  <a mat-raised-button [routerLink]="['edit']" *ngIf="auth$ | async">
+    <mat-icon>edit</mat-icon>
+    Edit item
+  </a>
+
+</ng-container>
+
+<hr class="divider">
+<br><br>
+
+<disqus [identifier]="itemId"></disqus>
