@@ -33,7 +33,7 @@ import { DISQUS_SHORTNAME } from 'ngx-disqus';
     NavbarModule,
   ],
   providers: [
-    {provide: DISQUS_SHORTNAME, useValue: 'turbo-1'}
+    {provide: DISQUS_SHORTNAME, useValue: environment.disqusShortName}
   ]
 })
 export class CoreModule { }
